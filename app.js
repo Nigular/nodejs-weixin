@@ -26,12 +26,12 @@ const createMenu = require('./libs/wxCustomeMenu');
 
 //引入路由
 //const weixin = require('./routes/weixin');
-//const auth = require('./routes/auth');
+const auth = require('./routes/auth');
 const userinfo = require('./routes/userinfo');
 
 //启用路由
 //app.use('/wechat', weixin);
-//app.use(auth);
+app.use(auth);
 app.use(userinfo);
 
 app.get('/', function (req, res) {

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const getJsApiData = require('../libs/getJsApiData');
-const config = require('../../config');
+const config = require('../config');
 
 router.get('/auth', function (req, res) {
   var clientUrl = 'http://' + req.hostname + req.url;
