@@ -10,6 +10,9 @@ const app = express();
 // path.join 将多个参数组合成一个 path(简单来说就是几个参数组合成路径)
 app.set('views', path.join(__dirname, 'views'));
 
+// 设置默认静态文件夹路径为public (静态页引入时就不需要写public了)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // 让ejs模板文件使用扩展名为html的文件
 app.engine("html",require("ejs").renderFile);
 
