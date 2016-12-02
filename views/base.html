@@ -6,7 +6,10 @@
     <title>获取用户信息</title>
 </head>
 <body>
-    <h1>基础信息</h1>
-    {{signature}}
+    <h1>得到基础信息</h1>
+    <p>(签名)signature: <%= signature %></p>
+    <p>(生成签名的时间戳)timestamp: <%= timestamp %></p>
+    <p>(生成签名的随机串)nonceStr: <%= nonceStr %></p>
+    <p>(公众号的唯一标识)appId: <%= appId %></p>
 </body>
 </html>

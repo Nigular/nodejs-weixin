@@ -34,8 +34,14 @@ const userinfo = require('./routes/userinfo');
 app.use(auth);
 app.use(userinfo);
 
+const getJsApiData = require('./libs/getJsApiData');
+const config = require('./config');
+
 app.get('/', function (req, res) {
-  res.render('index.html');
+  var clientUrl = 'http://' + req.hostname + req.url;
+  getJsApiData(clientUrl).then(data => {
+    res.render('index.html', {signature: data[0], timestamp: data[1], nonceStr: data[2], appId: config.appId});
+  });
 });
 
 app.listen(8100,function(){  console.log("Server Start!");});
