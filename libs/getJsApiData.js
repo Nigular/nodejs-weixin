@@ -24,6 +24,7 @@ function getJsApiTicket() {
   })
 }
 
+//生成16位随机字符串 
 function getNonceStr () {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -42,7 +43,7 @@ function getSign(jsApiTicket, noncestr, timestamp, url) {
     'jsapi_ticket': jsApiTicket,
     'noncestr': noncestr,
     'timestamp': timestamp,
-    'url': 'http://wuyrsp3tma.proxy.qqbrowser.cc/auth'
+    'url': 'http://wechat.gzyuhu.com/auth'
   };
   var sortData = "jsapi_ticket=" + jsApiTicket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=" + url;
   console.log(sortData);
