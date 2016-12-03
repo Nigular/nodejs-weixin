@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+var cookieParser = require('cookie-parser');	//session也要依赖这个模块
+var session = require("express-session"); //采用Session短期存储用户名和密码
 
 //app配置
 const app = express();
@@ -30,14 +32,16 @@ const createMenu = require('./libs/wxCustomeMenu');
 //引入路由
 //const weixin = require('./routes/weixin');
 const auth = require('./routes/auth');
-const userinfo = require('./routes/userinfo');
+const user = require('./routes/userinfo');
 
 //启用路由
 //app.use('/wechat', weixin);
 app.use(auth);
-app.use(userinfo);
+app.use(user);
 
+const getWebToken = require('./websdk/getWebToken');
 const getJsApiData = require('./libs/getJsApiData');
+const getUserInfo = require('./websdk/getWebUserInfo');
 const config = require('./config');
 
 app.get('/', function (req, res) {
@@ -47,8 +51,7 @@ app.get('/', function (req, res) {
   });
 });
 
-app.listen(8100,function(){  console.log("Server Start!");});
 
-require("./proxy.js");
+app.listen(8100,function(){  console.log("Server Start!");});
 
 module.exports = app;
