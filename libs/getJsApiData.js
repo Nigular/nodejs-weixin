@@ -43,10 +43,10 @@ function getSign(jsApiTicket, noncestr, timestamp, url) {
     'jsapi_ticket': jsApiTicket,
     'noncestr': noncestr,
     'timestamp': timestamp,
-    'url': 'http://wechat.gzyuhu.com/auth'
+    'url': 'http://wechat.gzyuhu.com/'
   };
   var sortData = "jsapi_ticket=" + jsApiTicket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=" + url;
-  console.log(sortData);
+  //console.log(sortData);
   return sha1(sortData);
 }
 

@@ -21,7 +21,7 @@ app.set("view engine","html");
 
 //引入token刷新
 const getToken = require('./libs/common');
-getToken();
+//getToken();
 
 //创建菜单
 const createMenu = require('./libs/wxCustomeMenu');
@@ -41,7 +41,7 @@ const getJsApiData = require('./libs/getJsApiData');
 const config = require('./config');
 
 app.get('/', function (req, res) {
-  var clientUrl = 'http://' + req.hostname + req.url;
+  var clientUrl = 'http://wechat.gzyuhu.com/';
   getJsApiData(clientUrl).then(data => {
     res.render('index.html', {signature: data[0], timestamp: data[1], nonceStr: data[2], appId: config.appId});
   });

@@ -16,11 +16,11 @@ function getToken(code) {
     method: 'get',
     url: reqUrl+qs.stringify(params)
   };
-  console.log(options.url);
+  
   return new Promise((resolve, reject) => {
+	  console.log("888"+options);
     request(options, function (err, res, body) {
       if (res) {
-        console.log(body)
         resolve(body);
       } else {
         reject(err);
