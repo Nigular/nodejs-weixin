@@ -20,7 +20,7 @@ var UserSchema = new mongoose.Schema({
     city  : {type : String},	//城市
     province  : {type : String},	//省份
     country  : {type : String},	//国家
-    lasttime : {type : Date, default: Date.now}	//最近登入时间
+    lasttime : {type : Number, default: new Date().getTime()}	//最近登入时间
 });
 
 //将该Schema发布为Model,创建collection连接user表
@@ -28,15 +28,24 @@ var UserModel = db.model('user',UserSchema);
 
 // 插入方法
 exports.add = function(option,callback) {
-   UserModel.create(option, function (err, docs) {
+	UserModel.find({openid:option.openid},function (err, docs) {
 		if (err){
 			return console.error(err);
-			
-        }else{
-        	//console.log(docs);
-            callback(docs);
+		}else{
+			if(docs.length>0){
+				UserModel.update({openid:option.openid}, {$set:option}, callback);
+			}else{
+				UserModel.create(option, function (err, docs) {
+					if (err){
+						return console.error(err);
+					}else{
+						//console.log(docs);
+						callback(docs);
+					}
+				});
+			}
         }
-    });
+	});
 }
 
 // 查找方法

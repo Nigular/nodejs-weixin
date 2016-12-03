@@ -18,7 +18,6 @@ function getToken(code) {
   };
   
   return new Promise((resolve, reject) => {
-	  console.log("888"+options);
     request(options, function (err, res, body) {
       if (res) {
         resolve(body);

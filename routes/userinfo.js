@@ -6,35 +6,36 @@ const getUserInfo = require('../websdk/getWebUserInfo');
 const usermodel = require("../database/usermodel.js");
 
 router.get('/user', function (req, res) {
+	console.log(req.session.openid);
 	if(!req.session.openid){
 		getToken(req.query.code)
 	    .then(function (data) {
-			console.log("555"+data);
 	        return JSON.parse(data); 
 	    })
 	    .then(function (data) {
 	      getUserInfo(data['access_token'], data['openid']).then(_item => {
+			var jsondata=JSON.parse(_item);
 	      	var userdata={
-				openid : _item.openid,	//微信openid
-			    nickname : _item.nickname,	//微信昵称
-			    headimgurl  : _item.headimgurl,	//头像
-			    sex 	 : _item.sex,	// 性别，男1,9未知
-			    city  : _item.city,	//城市
-			    province  : _item.province,	//省份
-			    country  : _item.country	//国家
+				openid : jsondata.openid,	//微信openid
+			    nickname : jsondata.nickname,	//微信昵称
+			    headimgurl  : jsondata.headimgurl,	//头像
+			    sex 	 : jsondata.sex,	// 性别，男1,9未知
+			    city  : jsondata.city,	//城市
+			    province  : jsondata.province,	//省份
+			    country  : jsondata.country	//国家
 			}
 	      	usermodel.add(userdata,function(data){
-				res.send({code:1});
+				
 			});
-			req.session.openid=_item.openid;
-	        res.render('user.html', {userinfo: _item});      
+			//console.log(userdata);
+			req.session.openid=jsondata.openid;
+	        res.render('user.html', {userinfo: userdata});      
 	      })
 	    });
 	}else{
-		console.log("999");
 		usermodel.find({openid:req.session.openid},function(data){
-			console.log("666"+data);
-			res.render('user.html', {userinfo: data}); 
+			///console.log(data[0]);
+			res.render('user.html', {userinfo: data[0]}); 
 		});
 	}
 });

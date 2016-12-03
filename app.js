@@ -21,6 +21,14 @@ app.engine("html",require("ejs").renderFile);
 //注册模板引擎的 callback 用来处理ext扩展名的文件默认情况下, 根据文件扩展名require() 对应的模板引擎。
 app.set("view engine","html");
 
+//session配置
+app.use(session({
+    cookie: { maxAge: 600000 },		//设置maxAge是600000ms，即600s后session和相应的cookie失效过期
+    secret: "test",		// 设置密钥
+    resave:false,	//重新保存：强制会话保存即使是未修改的。(默认值ture)
+    saveUninitialized:true		//强制保存未初始化的会话到存储器
+}));
+
 //引入token刷新
 const getToken = require('./libs/common');
 //getToken();
