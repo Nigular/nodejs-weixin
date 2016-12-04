@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>关注我们</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/follow.css"/>
+    <script src="/js/jweixin.js"></script>
+    <script>
+        wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: '<%= appId %>', // 必填，公众号的唯一标识
+            timestamp: '<%= timestamp %>', // 必填，生成签名的时间戳
+            nonceStr: '<%= nonceStr %>', // 必填，生成签名的随机串
+            signature: '<%= signature %>',// 必填，签名，见附录1
+            jsApiList: ['onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+    </script>
+</head>
+<body>
+	<div class="main">
+		<ul id="scene">
+		  <li class="layer layer1" data-depth="0.80"><img src="img/cloud.png"></li>
+		  <li class="layer layer2" data-depth="0.40"><img src="img/city_bg.png"></li>
+		</ul>
+		<div class="phone">
+			<div class="qrcode"><img src="img/qrcode.jpg"/></div>
+			<p class="tip">长按识别二维码<br />关注我们</p>
+			<div class="relqrcode"><img src="img/qrcode.jpg"/></div>
+		</div>
+	</div>
+</body>
+<script src="js/parallax.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var scene = document.getElementById('scene');
+	var parallax = new Parallax(scene);
+</script>
+</html>

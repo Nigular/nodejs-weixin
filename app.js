@@ -59,6 +59,14 @@ app.get('/', function (req, res) {
   });
 });
 
+// 关注我们的页面
+app.get('/follow', function (req, res) {
+  var clientUrl = 'http://wechat.gzyuhu.com/';
+  getJsApiData(clientUrl).then(data => {
+    res.render('index.html', {signature: data[0], timestamp: data[1], nonceStr: data[2], appId: config.appId});
+  });
+});
+
 
 app.listen(8100,function(){  console.log("Server Start!");});
 

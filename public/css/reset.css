@@ -1,0 +1,47 @@
+@charset "utf-8";
+  * {
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  outline:none 0;
+}
+body{
+	background: #FFFFFF;
+	overflow: auto;
+}
+body,button,input,select,textarea {
+  font-size:24px;
+  font-family:'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+}
+body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,select,table,td,textarea,th,ul {
+  margin:0;
+  padding:0;
+}
+ul li{
+	list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
